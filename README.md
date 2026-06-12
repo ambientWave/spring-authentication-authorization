@@ -1,6 +1,20 @@
 # spring-authentication-authorization
 
-### Reference Documentation
+## Screenshots
+<img width="1917" height="946" alt="1" src="https://github.com/user-attachments/assets/6ba43017-074c-4e9b-af5c-836516b1d040" />
+<img width="1919" height="807" alt="2" src="https://github.com/user-attachments/assets/daada963-d39e-4506-91a4-fb9b7f79c7a3" />
+<img width="1919" height="803" alt="3" src="https://github.com/user-attachments/assets/2c76a76f-54e3-44a6-b12c-36189119bf05" />
+<img width="1916" height="946" alt="4" src="https://github.com/user-attachments/assets/19e7a918-5a32-4a53-a17a-408bd97f20b1" />
+<img width="1919" height="943" alt="5" src="https://github.com/user-attachments/assets/0e133095-2db3-4e6f-a817-00afcc13695e" />
+<img width="1919" height="943" alt="6" src="https://github.com/user-attachments/assets/6724662b-5ff5-42d8-9cf3-94f6ed0448d0" />
+<img width="1918" height="941" alt="7" src="https://github.com/user-attachments/assets/f9e7f06b-6ff2-4f4f-b7a3-81a332ae16d9" />
+<img width="1919" height="943" alt="8" src="https://github.com/user-attachments/assets/637ed66c-6a1a-408a-8034-50f07b711bd6" />
+<img width="1919" height="936" alt="9" src="https://github.com/user-attachments/assets/f900e83c-e863-48cb-ac59-c97bccb2461a" />
+
+
+
+
+## Reference Documentation
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
