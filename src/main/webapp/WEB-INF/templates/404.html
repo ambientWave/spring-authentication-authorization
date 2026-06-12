@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Not Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0c0e27 0%, #1a1f3a 50%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Starfield background */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Planets moving away */
+        .planets-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(0.5px);
+        }
+
+        .planet-1 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            top: 20%;
+            left: 15%;
+            animation: moveAway1 6s ease-in-out infinite;
+            box-shadow: inset -8px -8px 16px rgba(0, 0, 0, 0.4), -4px -4px 8px rgba(249, 115, 22, 0.3);
+        }
+
+        .planet-2 {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #3b82f6 0%, #0284c7 100%);
+            top: 70%;
+            right: 10%;
+            animation: moveAway2 7s ease-in-out infinite;
+            box-shadow: inset -6px -6px 12px rgba(0, 0, 0, 0.4), -3px -3px 6px rgba(59, 130, 246, 0.3);
+        }
+
+        .planet-3 {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+            top: 35%;
+            right: 8%;
+            animation: moveAway3 8s ease-in-out infinite;
+            box-shadow: inset -7px -7px 14px rgba(0, 0, 0, 0.4), -3px -3px 7px rgba(168, 85, 247, 0.3);
+        }
+
+        .planet-4 {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+            top: 65%;
+            left: 12%;
+            animation: moveAway4 6.5s ease-in-out infinite;
+            box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.4), -2px -2px 5px rgba(236, 72, 153, 0.3);
+        }
+
+        @keyframes moveAway1 {
+            0% {
+                opacity: 0.7;
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-150px, -150px) scale(0.3);
+            }
+        }
+
+        @keyframes moveAway2 {
+            0% {
+                opacity: 0.6;
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(150px, 150px) scale(0.3);
+            }
+        }
+
+        @keyframes moveAway3 {
+            0% {
+                opacity: 0.65;
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(180px, -120px) scale(0.3);
+            }
+        }
+
+        @keyframes moveAway4 {
+            0% {
+                opacity: 0.6;
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-180px, 120px) scale(0.3);
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 20;
+            max-width: 600px;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* Satellite wrapper - applies wobble to entire satellite */
+        .satellite-wrapper {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            animation: wobbleSatellite 3s ease-in-out infinite;
+            perspective: 1000px;
+        }
+
+        @keyframes wobbleSatellite {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotateX(0deg) rotateZ(0deg);
+            }
+
+            25% {
+                transform: translateY(-15px) rotateX(8deg) rotateZ(-5deg);
+            }
+
+            50% {
+                transform: translateY(-25px) rotateX(0deg) rotateZ(0deg);
+            }
+
+            75% {
+                transform: translateY(-15px) rotateX(-8deg) rotateZ(5deg);
+            }
+        }
+
+        /* SVG styling */
+        .satellite-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 12px rgba(249, 115, 22, 0.3));
+            display: block;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #f1f5f9;
+            margin-bottom: 12px;
+            font-weight: 600;
+            animation: fadeInDown 0.8s ease-out 0.1s both;
+        }
+
+        p {
+            font-size: 16px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease-out 0.2s both;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInDown 0.8s ease-out 0.3s both;
+        }
+
+        a {
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(249, 115, 22, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #f1f5f9;
+            border: 2px solid #475569;
+        }
+
+        .btn-secondary:hover {
+            border-color: #cbd5e1;
+            background: rgba(71, 85, 105, 0.1);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .error-code {
+                font-size: 80px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            a {
+                width: 100%;
+            }
+
+            .satellite-wrapper {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto 20px;
+            }
+
+            .planet-1 {
+                width: 45px;
+                height: 45px;
+            }
+
+            .planet-2 {
+                width: 35px;
+                height: 35px;
+            }
+
+            .planet-3 {
+                width: 40px;
+                height: 40px;
+            }
+
+            .planet-4 {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars"></div>
+
+    <div class="planets-container">
+        <div class="planet planet-1"></div>
+        <div class="planet planet-2"></div>
+        <div class="planet planet-3"></div>
+        <div class="planet planet-4"></div>
+    </div>
+
+    <div class="container">
+        <!-- Satellite wrapper applies wobble to entire SVG -->
+        <div class="satellite-wrapper">
+            <svg class="satellite-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.95" />
+                        <stop offset="100%" style="stop-color:#ea580c;stop-opacity:0.95" />
+                    </linearGradient>
+
+                    <linearGradient id="panelGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.85" />
+                        <stop offset="100%" style="stop-color:#0284c7;stop-opacity:0.85" />
+                    </linearGradient>
+
+                    <filter id="shadowFilter" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3" />
+                    </filter>
+                </defs>
+
+                <!-- Left Solar Panel -->
+                <g class="left-panel">
+                    <!-- Panel arm -->
+                    <rect x="20" y="82" width="55" height="10" fill="url(#panelGradient)" stroke="#0284c7"
+                        stroke-width="1.5" rx="2" filter="url(#shadowFilter)" />
+
+                    <!-- Solar cells -->
+                    <rect x="23" y="84" width="9" height="6" fill="#0284c7" opacity="0.9" stroke="#02577a"
+                        stroke-width="0.5" />
+                    <rect x="35" y="84" width="9" height="6" fill="#0284c7" opacity="0.9" stroke="#02577a"
+                        stroke-width="0.5" />
+                    <rect x="47" y="84" width="9" height="6" fill="#0284c7" opacity="0.9" stroke="#02577a"
+                        stroke-width="0.5" />
+                    <rect x="59" y="84" width="9" height="6" fill="#0284c7" opacity="0.9" stroke="#02577a"
+                        stroke-width="0.5" />
+                </g>
+
+                <!-- Main Satellite Body -->
+                <g class="satellite-body" filter="url(#shadowFilter)">
+                    <!-- Front face of cube -->
+                    <rect x="72" y="60" width="56" height="56" fill="url(#bodyGradient)" stroke="#ea580c"
+                        stroke-width="2" rx="4" />
+
+                    <!-- Top right edge (3D effect) -->
+                    <polygon points="72,60 80,52 136,52 128,60" fill="#f97316" opacity="0.7" />
+
+                    <!-- Right edge (3D effect) -->
+                    <polygon points="128,60 136,52 136,108 128,116" fill="#d97706" opacity="0.6" />
+
+                    <!-- Center circular window -->
+                    <circle cx="100" cy="88" r="14" fill="none" stroke="#f97316" stroke-width="2" opacity="0.8" />
+                    <circle cx="100" cy="88" r="10" fill="#60a5fa" opacity="0.7" />
+                    <circle cx="100" cy="88" r="7" fill="#3b82f6" opacity="0.5" />
+
+                    <!-- Antenna connector base -->
+                    <rect x="97" y="55" width="6" height="6" fill="#ea580c" stroke="#dc2626" stroke-width="1" />
+                </g>
+
+                <!-- Right Solar Panel -->
+                <g class="right-panel">
+                    <!-- Panel arm -->
+                    <rect x="125" y="82" width="55" height="10" fill="url(#panelGradient)" stroke="#0284c7"
+                        stroke-width="1.5" rx="2" filter="url(#shadowFilter)" />
+
+                    <!-- Solar cells -->
+                    <rect x="128" y="84" width="9" height="6" fill="#0284c7" opacity="0.9" stroke="#02577a"
+                        stroke-width="0.5" />
+                    <rect x="140" y="84" width="9" height="6" fill="#0284c7" opacity="0.9" stroke="#02577a"
+                        stroke-width="0.5" />
+                    <rect x="152" y="84" width="9" height="6" fill="#0284c7" opacity="0.9" stroke="#02577a"
+                        stroke-width="0.5" />
+                    <rect x="164" y="84" width="9" height="6" fill="#0284c7" opacity="0.9" stroke="#02577a"
+                        stroke-width="0.5" />
+                </g>
+
+                <!-- Top Left Antenna -->
+                <g class="antenna antenna-top-left">
+                    <!-- Antenna stick -->
+                    <line x1="85" y1="55" x2="65" y2="20" stroke="#f97316" stroke-width="3" stroke-linecap="round"
+                        opacity="0.9" />
+                    <!-- Antenna tip -->
+                    <circle cx="65" cy="20" r="3.5" fill="#f97316" opacity="0.9" />
+                    <!-- Glow effect -->
+                    <circle cx="65" cy="20" r="6" fill="none" stroke="#f97316" stroke-width="1" opacity="0.3" />
+                </g>
+
+                <!-- Top Right Antenna -->
+                <g class="antenna antenna-top-right">
+                    <!-- Antenna stick -->
+                    <line x1="115" y1="55" x2="135" y2="20" stroke="#f97316" stroke-width="3" stroke-linecap="round"
+                        opacity="0.9" />
+                    <!-- Antenna tip -->
+                    <circle cx="135" cy="20" r="3.5" fill="#f97316" opacity="0.9" />
+                    <!-- Glow effect -->
+                    <circle cx="135" cy="20" r="6" fill="none" stroke="#f97316" stroke-width="1" opacity="0.3" />
+                </g>
+
+                <!-- Bottom antenna -->
+                <g id="antenna-3">
+                    <line x1="100" y1="110" x2="100" y2="145" stroke="#f97316" stroke-width="2" stroke-linecap="round"
+                        opacity="0.7" />
+                    <circle cx="100" cy="145" r="2.5" fill="#f97316" opacity="0.7" />
+                </g>
+
+                <!-- Signal wave circles (disconnected effect) -->
+                <g id="signal-waves" opacity="0.4">
+                    <circle cx="100" cy="85" r="30" fill="none" stroke="#f97316" stroke-width="1" opacity="0.5"
+                        style="animation: signalPulse 2s ease-out infinite;" />
+                    <circle cx="100" cy="85" r="30" fill="none" stroke="#f97316" stroke-width="1" opacity="0.5"
+                        style="animation: signalPulse 2s ease-out 0.5s infinite;" />
+                </g>
+
+                <!-- X mark overlay (no signal) -->
+                <g id="no-signal-mark" opacity="0.5">
+                    <line x1="70" y1="70" x2="130" y2="130" stroke="#f97316" stroke-width="2" stroke-linecap="round" />
+                    <line x1="130" y1="70" x2="70" y2="130" stroke="#f97316" stroke-width="2" stroke-linecap="round" />
+                </g>
+
+                <!-- Gradients -->
+                <defs>
+                    <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f97316;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#ea580c;stop-opacity:0.9" />
+                    </linearGradient>
+
+                    <linearGradient id="panelGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#0284c7;stop-opacity:0.8" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <style>
+                @keyframes panelFlutter {
+
+                    0%,
+                    100% {
+                        transform: rotateZ(-5deg);
+                    }
+
+                    50% {
+                        transform: rotateZ(10deg);
+                    }
+                }
+
+                @keyframes panelFlutterReverse {
+
+                    0%,
+                    100% {
+                        transform: rotateZ(5deg);
+                    }
+
+                    50% {
+                        transform: rotateZ(-10deg);
+                    }
+                }
+
+                @keyframes antennaWobble1 {
+
+                    0%,
+                    100% {
+                        transform: rotate(0deg);
+                    }
+
+                    50% {
+                        transform: rotate(-8deg);
+                    }
+                }
+
+                @keyframes antennaWobble2 {
+
+                    0%,
+                    100% {
+                        transform: rotate(0deg);
+                    }
+
+                    50% {
+                        transform: rotate(8deg);
+                    }
+                }
+
+                @keyframes signalPulse {
+                    0% {
+                        r: 25px;
+                        opacity: 0.6;
+                    }
+
+                    100% {
+                        r: 50px;
+                        opacity: 0;
+                    }
+                }
+            </style>
+        </div>
+
+        <div class="error-code">404</div>
+        <h1>Connection Lost</h1>
+        <p>Our satellite has lost its signal and can't locate the page you're looking for. It's drifting further away
+            with each passing moment.</p>
+
+        <div class="button-group">
+            <a href="/" class="btn-primary">Go Home</a>
+            <a href="javascript:history.back()" class="btn-secondary">Go Back</a>
+        </div>
+    </div>
+
+    <script>
+        // Generate starfield
+        const starsContainer = document.querySelector('.stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 2 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+    </script>
+</body>
+
+</html>
